@@ -8,7 +8,7 @@
     "dev:server": "json-server server.json -p 3333 -w -d 500",
     "lint": "eslint src --ext .tsx,.ts",
     "lint:fix": "eslint src --ext .tsx,.ts --fix",
-    "build": "tsc && vite build",
+    "build": "tsc && vite && json-server server.json -p 3333 -w -d 500 build",
     "preview": "vite preview",
     "start": "pm2 start npm --name \"app\" -- start dev && pm2 start npm --name \"server\" -- start dev:server"
   },
