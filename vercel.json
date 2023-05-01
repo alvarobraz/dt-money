@@ -4,7 +4,7 @@
       "src": "package.json",
       "use": "@vercel/node",
       "env": {
-        "PORT": "3333"
+        "PORT_FONT": "3333"
       },
       "buildCommand": "npm run dev"
     },
@@ -12,7 +12,7 @@
       "src": "server.json",
       "use": "@vercel/node-server",
       "env": {
-        "PORT": "5000"
+        "PORT_BACK": "5000"
       },
       "buildCommand": "npm run dev:server"
     }
