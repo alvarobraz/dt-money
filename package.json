@@ -8,7 +8,7 @@
     "dev:server": "json-server server.json -p 3333 -w -d 500",
     "lint": "eslint src --ext .tsx,.ts",
     "lint:fix": "eslint src --ext .tsx,.ts --fix",
-    "build": "tsc && concurrently \"vite build\" \"json-server server.json -p 3333 -w -d 500\"",
+    "build": "tsc && vite build && json-server server.json -p $PORT -w -d 500 & vite preview",
     "preview": "vite preview"
   },
   "dependencies": {
