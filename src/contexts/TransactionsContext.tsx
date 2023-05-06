@@ -20,6 +20,7 @@ interface CreateTransactionInput {
 
 interface TransactionContextType {
   transactions: Transaction[]
+  load: boolean
   fetchTransactions: (query?: string) => Promise<void>
   createTransaction: (data: CreateTransactionInput) => Promise<void>
 }
@@ -32,32 +33,38 @@ export const TransactionsContext = createContext({} as TransactionContextType)
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
+  const [load, setLoad] = useState<boolean>(false)
 
   const fetchTransactions = useCallback(async (query?: string) => {
+    setLoad(true)
     const response = await api.get('transactions', {
       params: {
         _sort: 'createdAt',
         _order: 'desc',
-        q: query,
+        page: 0,
+        limit: 999,
+        name: query,
       },
     })
-
-    setTransactions(response.data)
+    setTimeout(() => {}, 500)
+    setLoad(false)
+    setTransactions(response.data.transactionSearch)
   }, [])
 
   const createTransaction = useCallback(
     async (data: CreateTransactionInput) => {
       const { description, price, category, type } = data
-
+      setLoad(true)
       const response = await api.post('transactions', {
         description,
         price,
         category,
         type,
-        createdAt: new Date(),
       })
-
-      setTransactions((state) => [response.data, ...state])
+      setTimeout(() => {}, 500)
+      console.log(response.data)
+      setLoad(false)
+      setTransactions((state) => [response.data[0], ...state])
     },
     [],
   )
@@ -70,6 +77,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
     <TransactionsContext.Provider
       value={{
         transactions,
+        load,
         fetchTransactions,
         createTransaction,
       }}

@@ -13,7 +13,11 @@ import {
 
 export function Transactions() {
   const transactions = useContextSelector(TransactionsContext, (context) => {
-    return context.transactions
+    console.log('context.load')
+    console.log(context.load)
+    if (context.load === false) {
+      return context.transactions
+    }
   })
 
   return (
@@ -26,7 +30,7 @@ export function Transactions() {
 
         <TransactionsTable>
           <tbody>
-            {transactions.map((transaction) => {
+            {transactions?.map((transaction) => {
               return (
                 <tr key={transaction.id}>
                   <td width="50%">{transaction.description}</td>
@@ -38,7 +42,10 @@ export function Transactions() {
                   </td>
                   <td>{transaction.category}</td>
                   <td>
-                    {dateFormatter.format(new Date(transaction.createdAt))}
+                    {/* {FormatDate(transaction?.createdAt)} */}
+                    {transaction?.createdAt
+                      ? dateFormatter.format(new Date(transaction.createdAt))
+                      : ''}
                   </td>
                 </tr>
               )
