@@ -46,7 +46,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         name: query,
       },
     })
-    setTimeout(() => {}, 500)
+    // setTimeout(() => {}, 500)
     setLoad(false)
     setTransactions(response.data.transactionSearch)
   }, [])
@@ -61,7 +61,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         category,
         type,
       })
-      setTimeout(() => {}, 500)
+      // setTimeout(() => {}, 500)
       console.log(response.data)
       setLoad(false)
       setTransactions((state) => [response.data[0], ...state])
