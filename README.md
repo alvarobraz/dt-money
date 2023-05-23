@@ -35,7 +35,7 @@
 
 ## :dart: Sobre ##
 
-Aplicação em ReactJs/TypeScript de cadastro de projetos baseado em um timer onde é gravado um histórico que exibe se o projeto está em andamento, interrompido ou concluído!
+Aplicação em ReactJs/TypeScript de controle financeiro onde é possível cadastrar entradas e saídas e ver seu saldo final.
 
 
 ## :rocket: Tecnologias ##
